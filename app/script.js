@@ -47,7 +47,7 @@ function create_rotation_controller(device_div, device) {
   const control_div = document.createElement("div");
   const control_id = `rotate-${device.Index}`;
   control_div.innerHTML = `<h3>
-    Rotate
+    Spin (center is 0, left or right to set the spin speed in either direction)
   </h3>
   <input type="range" min="-100" max="100" value="0" id="${control_id}" />
   <label for="${control_id}">Rotation Speed</label><br />
@@ -57,10 +57,10 @@ function create_rotation_controller(device_div, device) {
 
   // See Vibrate UI for explanation of this.
   slider.addEventListener("mouseup", async function (ev) {
-    await device.SendRotateCmd(Math.abs(slider.value / 100.0), slider.value < 0);
+    await device.SendRotateCmd(Math.abs(slider.value / 200.0), slider.value < 0);
   });
   slider.addEventListener("touchend", async function (ev) {
-    await device.SendRotateCmd(Math.abs(slider.value / 100.0), slider.value < 0);
+    await device.SendRotateCmd(Math.abs(slider.value / 200.0), slider.value < 0);
   });
   const stop_button = document.getElementById(`${control_id}-stop`);
   stop_button.addEventListener("click", async () => device.SendStopDeviceCmd());
@@ -131,7 +131,17 @@ function create_device_controls_div(container, device, can_share = false, forwar
   console.log(`${device.Name} connected!`);
   const device_div = document.createElement("div");
   const device_title = document.createElement("h2");
-  device_title.innerHTML = validator.escape(device.Name);
+  if (device.AllowedMessages.includes("VibrateCmd")) {
+    device_title.innerHTML = "Buzz me";
+  }
+
+  if (device.AllowedMessages.includes("RotateCmd")) {
+    device_title.innerHTML = "Lick me";
+  }
+
+  if (device.AllowedMessages.includes("LinearCmd")) {
+    device_title.innerHTML = "Fuck me";
+  }
   device_div.appendChild(device_title);
   device_div.id = `device-${device.Index}`;
 
