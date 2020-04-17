@@ -167,11 +167,11 @@ function run_app() {
     // forwarder could actually handle multiple sharers (meaning one controller
     // could control multiple sharer's toys from the same interface), but we
     // keep it to one here to keep things simple.
-    if (forwarder_connected) {
+    /*if (forwarder_connected) {
       console.log("Someone tried to connect while we already have a connection. Connection closed.");
       client.close();
       return;
-    }
+    }*/
 
     // Set up the forwarder and server. First, we have to create a forwarder
     // connector, which uses a websocket to listen for forwarder commands
@@ -408,7 +408,7 @@ function run_app() {
   // we usually wrap the ButtplugServer object somehow. Since we have
   // inheritance in Typescript/Javascript, we'll use that.
   class ButtplugExpressWebsocketServer extends ButtplugServer {
-    public constructor(name: string, maxPingTime: number = 0) {
+    public constructor(name: string, maxPingTime: number = 29) {
       super(name, maxPingTime);
     }
 
