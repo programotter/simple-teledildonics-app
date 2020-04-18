@@ -184,7 +184,7 @@ function run_app() {
     connector.Listen();
 
     // Now we set up the server that will host forwarded devices.
-    server = new ButtplugExpressWebsocketServer("Remote Server", 0);
+    server = new ButtplugExpressWebsocketServer("Remote Server", 500);
     
     // Forwarded devices use a "device communication manager", which is another
     // common structure in Buttplug. Device communication managers handle a
