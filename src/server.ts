@@ -408,7 +408,7 @@ function run_app() {
   // we usually wrap the ButtplugServer object somehow. Since we have
   // inheritance in Typescript/Javascript, we'll use that.
   class ButtplugExpressWebsocketServer extends ButtplugServer {
-    public constructor(name: string, maxPingTime: number = 29) {
+    public constructor(name: string, maxPingTime: number = 0) {
       super(name, maxPingTime);
     }
 
