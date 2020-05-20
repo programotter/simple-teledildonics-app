@@ -48,7 +48,7 @@
 // Everything we'll need from the Buttplug library, which is a lot.
 import { ButtplugLogger, ButtplugServerForwardedConnector, ForwardedDeviceManager,
          FromJSON, ButtplugMessage, ButtplugLogLevel, ButtplugServer,
-         RequestServerInfo } from "buttplug"; 4
+         RequestServerInfo } from "buttplug";
 
 // We'll need to emit events
 import { EventEmitter } from "events";
@@ -278,6 +278,8 @@ function run_app() {
             this.wsClient.removeAllListeners();
             return;
           }
+          // Set up regular keep-alive pings to the forwarder
+          setInterval(() => this.wsClient.ping(), 1000);
           // Set our sharer connected status, then bail before we start parsing
           // JSON
           forwarder_connected = true;
