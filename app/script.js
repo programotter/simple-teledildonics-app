@@ -336,7 +336,7 @@ const startLocalConnection = async function () {
   // Set up the status connection. This will tell us when a controller has
   // connected. Once again, it's expected to live on the same server that's
   // hosting this script.
-  const status_ws = new WebSocket("wss://" + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + "/status");
+  const status_ws = new ReconnectingWebSocket("wss://" + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + "/status");
   status_ws.addEventListener("open", () => {
     status_ws.addEventListener("message", (ev) => {
       let msg = ev.data;

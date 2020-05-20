@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "typescript": "^3.8.3",
     "express-ws": "^4.0.0",
+    "reconnecting-websocket": "^4.4.0",
     "@types/express-ws": "^3.0.0"
   },
   "devDependencies": {
